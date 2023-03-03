@@ -14,9 +14,7 @@
     <title>Login</title>
   </head>
   <body>
-    <div class="recommend">
-      <h3>Welcome to the chat App</h1>
-    </div>
+
     <div class="wrapper">
       <div>
         <!-- Tab items -->
@@ -34,8 +32,11 @@
       </div>
       <div class="tab-content">
         <div class="tab-pane active">
-          <form class="form_container" id="from-1">
+          <form class="form_container">
             <div class="title_container">
+              <div class="recommend">
+                <h3>Welcome to the chat App</h1>
+              </div>
               <p class="title">Login to your Account</p>
               <span class="subtitle"
                 >Get started with our app, just create an account and enjoy the
@@ -97,7 +98,6 @@
             </div>
             <div class="input_container">
               <label class="input_label" for="email_field">Email</label>
-              <span class="from-message"></span>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
@@ -124,7 +124,7 @@
               <input
                 placeholder="name@mail.com"
                 title="Inpit title"
-                name="input-name"
+                name="input-password"
                 type="text"
                 class="input_field"
                 id="email_field"
@@ -132,7 +132,6 @@
             </div>
             <div class="input_container">
               <label class="input_label" for="password_field">Password</label>
-              <span class="from-message"></span>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
@@ -174,7 +173,7 @@
           </form>
         </div>
         <div class="tab-pane">
-          <form class="form_container">
+          <form class="form_container" id="from-1">
             <div class="title_container">
               <p class="title">Register to your Account</p>
               <span class="subtitle"
@@ -185,6 +184,7 @@
             <br />
             <div class="input_container">
               <label class="input_label" for="email_field">Email</label>
+              <span class="from-message" style = 'font-size:12px'></span>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
@@ -210,7 +210,7 @@
               <input
                 placeholder="name@mail.com"
                 title="Inpit title"
-                name="input-name"
+                name="input-email"
                 type="text"
                 class="input_field"
                 id="email_field"
@@ -218,6 +218,7 @@
             </div>
             <div class="input_container">
               <label class="input_label" for="email_field">Username</label>
+              <span class="from-message" style = 'font-size:12px'></span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -243,11 +244,12 @@
                 name="input-name"
                 type="text"
                 class="input_field"
-                id="email_field"
+                id="username_field"
               />
             </div>
             <div class="input_container">
               <label class="input_label" for="password_field">Password</label>
+              <span class="from-message" style = 'font-size:12px'></span>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
@@ -277,7 +279,7 @@
               <input
                 placeholder="Password"
                 title="Inpit title"
-                name="input-name"
+                name="input-password"
                 type="password"
                 class="input_field"
                 id="password_field"
@@ -287,6 +289,7 @@
               <label class="input_label" for="password_field"
                 >Confrim Password</label
               >
+              <span class="from-message" style = 'font-size:12px'></span>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
@@ -316,10 +319,10 @@
               <input
                 placeholder="Password"
                 title="Inpit title"
-                name="input-name"
+                name="input-Confirmpassword"
                 type="password"
                 class="input_field"
-                id="password_field"
+                id="password_Confirm"
               />
             </div>
             <button title="Sign In" type="submit" class="sign-in_btn">
@@ -340,12 +343,21 @@
       //Output 
       Valilator({
         from:'#from-1',
+        fromGroupSelector:'.input_container',
         errorSelector: '.from-message',
         rules:[
+        Valilator.isRequired('#username_field','Vui lòng nhập Username'),
+        Valilator.isRequired('#email_field','Vui Lòng nhập email'),
         Valilator.isEmail('#email_field'),
-        Valilator.isRequired('#password_field'),
-        ]
-
+        Valilator.isMinght('#password_field',8),
+        Valilator.isRequired('#password_Confirm','Vui lòng nhập lại password'),
+        Valilator.isConfirmed('#password_Confirm' ,() => {
+            return document.querySelector('#from-1 #password_field ').value;
+        },'Mật khẩu nhập không chính xác')
+        ],
+        onsubmit : function(data){
+          console.log(data);
+        }
       })
     </script>
     <script></script>
