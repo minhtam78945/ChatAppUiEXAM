@@ -39,6 +39,7 @@ function Valilator(options) {
       var isFromValid = true;
       options.rules.forEach((rule) => {
         var inputElemnt = formElement.querySelector(rule.selector);
+
         var isValid = validate(inputElemnt, rule);
         if (!isValid) {
           isFromValid = false;
@@ -54,14 +55,32 @@ function Valilator(options) {
             values,
             input
           ) {
-            values[input.name] = input.value;
+            switch (input.type) {
+              case "radio":
+                values[input.name] = formElement.querySelector(
+                  'input[name="' + input.name + '"]:checked'
+                ).value;
+                break;
+              case "checkbox":
+                break;
+              case "file":
+                values[input.name] = input.files;
+                break;
+              default:
+                values[input.name] = input.value;
+            }
             return values;
           },
           {});
           options.onsubmit(fromValue);
         }
       } else {
-        console.log("Error");
+        toast({
+          title: "Waring",
+          message: "Thất bại",
+          type: "waring",
+          duration: 3000,
+        });
       }
     };
     options.rules.forEach((rule) => {
@@ -72,23 +91,22 @@ function Valilator(options) {
         selectorRules[rule.selector] = [rule.test];
       }
 
-      var inputElemnt = formElement.querySelector(rule.selector);
-      var errorElemnet = getParent(
-        inputElemnt,
-        options.fromGroupSelector
-      ).querySelector(options.errorSelector);
-      var errorMessage = rule.test(inputElemnt.value);
-      if (inputElemnt) {
+      var inputElemnts = formElement.querySelectorAll(rule.selector);
+      Array.from(inputElemnts).forEach((inputElemnt) => {
         inputElemnt.onblur = () => {
           validate(inputElemnt, rule);
         };
         inputElemnt.oninput = () => {
+          var errorElemnet = getParent(
+            inputElemnt,
+            options.fromGroupSelector
+          ).querySelector(options.errorSelector);
           errorElemnet.innerText = "";
           getParent(inputElemnt, options.fromGroupSelector).classList.remove(
             "invalid"
           );
         };
-      }
+      });
     });
     console.log(selectorRules);
   }
@@ -105,13 +123,14 @@ Valilator.isRequired = (selector, message) => {
     },
   };
 };
-Valilator.isMinght = function (selector, min) {
+Valilator.isMinght = function (selector, min, message) {
   return {
     selector: selector,
     test: function (value) {
       return value.length >= min
         ? undefined
-        : `Mật khẩu ít nhất có ${min} kí tự và có chữ cái in hoa và số : Myadmin123 `;
+        : message ||
+            `Mật khẩu ít nhất có ${min} kí tự và có chữ cái in hoa và số : Myadmin123 `;
     },
   };
 };
@@ -135,3 +154,31 @@ Valilator.isConfirmed = (selector, getConfirmValue, message) => {
     },
   };
 };
+
+function register(formData) {
+  // Lấy thông tin người dùng từ formData
+  const username = formData.inputName;
+  const password = formData.inputPassword;
+  const email = formDataEmail;
+  console.log({ username, password, email });
+
+  // Xác thực dữ liệu, ví dụ kiểm tra tính hợp lệ của email và passwor
+
+  // Gửi thông tin đăng ký đến server
+  const requestBody = { username, password, email };
+  fetch("/api/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Xử lý phản hồi từ server
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}

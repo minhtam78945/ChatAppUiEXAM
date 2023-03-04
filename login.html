@@ -32,7 +32,7 @@
       </div>
       <div class="tab-content">
         <div class="tab-pane active">
-          <form class="form_container">
+          <form class="form_container" id="from-2">
             <div class="title_container">
               <div class="recommend">
                 <h3>Welcome to the chat App</h1>
@@ -98,6 +98,7 @@
             </div>
             <div class="input_container">
               <label class="input_label" for="email_field">Email</label>
+              <span class="from-message" style = 'font-size:12px'></span>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
@@ -124,7 +125,7 @@
               <input
                 placeholder="name@mail.com"
                 title="Inpit title"
-                name="input-password"
+                name="inputPassword"
                 type="text"
                 class="input_field"
                 id="email_field"
@@ -132,6 +133,7 @@
             </div>
             <div class="input_container">
               <label class="input_label" for="password_field">Password</label>
+              <span class="from-message" style = 'font-size:12px'></span>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
@@ -161,7 +163,7 @@
               <input
                 placeholder="Password"
                 title="Inpit title"
-                name="input-name"
+                name="inputName"
                 type="password"
                 class="input_field"
                 id="password_field"
@@ -210,7 +212,7 @@
               <input
                 placeholder="name@mail.com"
                 title="Inpit title"
-                name="input-email"
+                name="inputEmail"
                 type="text"
                 class="input_field"
                 id="email_field"
@@ -241,7 +243,7 @@
               <input
                 placeholder="amdin123"
                 title="Inpit title"
-                name="input-name"
+                name="inputName"
                 type="text"
                 class="input_field"
                 id="username_field"
@@ -279,7 +281,7 @@
               <input
                 placeholder="Password"
                 title="Inpit title"
-                name="input-password"
+                name="inputPassword"
                 type="password"
                 class="input_field"
                 id="password_field"
@@ -354,6 +356,19 @@
         Valilator.isConfirmed('#password_Confirm' ,() => {
             return document.querySelector('#from-1 #password_field ').value;
         },'Mật khẩu nhập không chính xác')
+        ],
+        onsubmit : function(data){
+          console.log(data);
+        }
+      })
+      Valilator({
+        from:'#from-2',
+        fromGroupSelector:'.input_container',
+        errorSelector: '.from-message',
+        rules:[
+        Valilator.isRequired('#email_field','Vui Lòng nhập email'),
+        Valilator.isEmail('#email_field'),
+        Valilator.isMinght('#password_field',8,'Mật khẩu nhập vào không đúng'),
         ],
         onsubmit : function(data){
           console.log(data);
