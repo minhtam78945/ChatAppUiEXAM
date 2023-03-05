@@ -1,5 +1,5 @@
-const tabs = document.querySelectorAll(".tab-item");
-const panes = document.querySelectorAll(".tab-pane");
+const tabs = document.querySelectorAll(".tab-items");
+const panes = document.querySelectorAll(".tab-panne");
 console.log(tabs, panes);
 
 tabs.forEach((tab, index) => {
