@@ -1,4 +1,3 @@
-
 const userRender = document.querySelector(".user-list");
 
 const users = [
