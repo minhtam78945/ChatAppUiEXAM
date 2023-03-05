@@ -1,6 +1,6 @@
-const userRender = document.querySelector(".user-list");
-const userAddFriend = document.querySelector(".addfriend");
-const userRequets = document.querySelector(".requestLinks");
+var userRender = document.querySelector(".user-list");
+var userAddFriend = document.querySelector(".addfriend");
+var userRequets = document.querySelector(".requestLinks");
 /// user Chatting
 const users = [
   {
@@ -54,7 +54,7 @@ const friends = [
   },
 ];
 
-const request = [
+const requests = [
   {
     id: 1,
     name: "Sinh Hùng",
@@ -76,7 +76,7 @@ const request = [
 ];
 users.forEach((user) => {
   const userHmtl = `
-    <div class="block ${user.unRead ? "unRead" : ""}">
+  <div class="block ${user.unRead ? "unRead" : ""}" id ='${user.id}'>
         <div class="userImage">
           <img
             src="${user.image}"
@@ -97,6 +97,10 @@ users.forEach((user) => {
       </div>
     `;
   userRender.innerHTML += userHmtl;
+  const userElement = document.getElementById(`${user.id}`);
+  userElement.addEventListener("click", () => {
+    console.log(user);
+  });
 });
 friends.forEach((friend) => {
   const friendHtml = `
@@ -129,4 +133,23 @@ friends.forEach((friend) => {
   userAddFriend.innerHTML += friendHtml;
 });
 
-
+requests.forEach((request) => {
+  const requestHtml = `<div class="block ">
+  <div class="userImage">
+    <img
+      src="${request.image}"
+      alt="avater-user"
+      class="cover"
+    />
+  </div>
+  <div class="details">
+    <div class="listhead">
+      <h4>${request.name}</h4>
+      <div class="btnAndremove">
+        <i class="fa-solid fa-check accpet"></i>
+        <i class="fa-solid fa-xmark remove"></i>
+    </div>
+  </div>
+</div>`;
+  userRequets.innerHTML += requestHtml;
+});

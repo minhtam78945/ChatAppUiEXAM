@@ -432,3 +432,10 @@ button {
    .add:hover {
     background-color: #0071e2;
    }
+   .accpet{
+    color: #47d864  ;
+   }
+   .remove{
+    color: #ffc021;
+   }
+  
