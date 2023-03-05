@@ -50,8 +50,8 @@
 }
 .userimng{
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     overflow: hidden;
     border-radius: 50%;
 }
@@ -166,6 +166,7 @@
 .chat-list .block .details .listhead{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 5px;
 }
 .chat-list .block .details .listhead h4{
@@ -218,6 +219,10 @@
 
 .user-list{
     width: 100%;
+}
+.suggestionItems,.notification{
+    text-transform: uppercase;
+    color: #707070;
 }
 .tab-items{
     padding: 10px;
@@ -396,3 +401,34 @@ button {
   button:hover .arrow:before {
     right: 0;
   }
+
+.userImageFriend{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.btnAndremove{
+    display: flex;
+    align-items: center;
+    gap:10px
+}
+  .add {
+    border: 1px solid #24b4fb;
+    background-color: #24b4fb;
+    border-radius: 10px;
+    padding: 10px;
+    transition: all ease-in-out 0.2s;
+    font-size: 16px;
+   }
+   
+   .add span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+   }
+   
+   .add:hover {
+    background-color: #0071e2;
+   }

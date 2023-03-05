@@ -1,5 +1,7 @@
 const userRender = document.querySelector(".user-list");
-
+const userAddFriend = document.querySelector(".addfriend");
+const userRequets = document.querySelector(".requestLinks");
+/// user Chatting
 const users = [
   {
     id: 1,
@@ -30,6 +32,48 @@ const users = [
     unRead: "true",
   },
 ];
+// hard code user addfrinend
+const friends = [
+  {
+    id: 1,
+    name: "Sinh Hùng",
+    image:
+      "https://scontent.fsgn8-3.fna.fbcdn.net/v/t39.30808-6/326403390_1522209771635250_7604274983211479574_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=52fL_fp1vSsAX_Qt2Ry&_nc_ht=scontent.fsgn8-3.fna&oh=00_AfC_73IUK3AidK4ykB02uKHdfBJUoDrakWBmhja7xuRePw&oe=6408860A",
+  },
+  {
+    id: 2,
+    name: "Thế Anh",
+    image:
+      "https://scontent.fsgn8-3.fna.fbcdn.net/v/t39.30808-6/169147778_3000080340318830_8496454307966035293_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Snk6uDma-q8AX-MkCMg&_nc_ht=scontent.fsgn8-3.fna&oh=00_AfAbvDZmkoChRDVh4nwtRjGecNYmACdcxDU6Euv3SVoUhw&oe=640A1C74",
+  },
+  {
+    id: 3,
+    name: "Việt Quang",
+    image:
+      "https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/309388201_3308232702789043_645801797319481363_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=2ywyrl8SmtcAX95FD2y&_nc_ht=scontent.fsgn8-4.fna&oh=00_AfANs6MPE_NhUbk03tkufCfDv3cl7KxJRjPRPz8qexGzbg&oe=640A19DF",
+  },
+];
+
+const request = [
+  {
+    id: 1,
+    name: "Sinh Hùng",
+    image:
+      "https://scontent.fsgn8-3.fna.fbcdn.net/v/t39.30808-6/326403390_1522209771635250_7604274983211479574_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=52fL_fp1vSsAX_Qt2Ry&_nc_ht=scontent.fsgn8-3.fna&oh=00_AfC_73IUK3AidK4ykB02uKHdfBJUoDrakWBmhja7xuRePw&oe=6408860A",
+  },
+  {
+    id: 2,
+    name: "Thế Anh",
+    image:
+      "https://scontent.fsgn8-3.fna.fbcdn.net/v/t39.30808-6/169147778_3000080340318830_8496454307966035293_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Snk6uDma-q8AX-MkCMg&_nc_ht=scontent.fsgn8-3.fna&oh=00_AfAbvDZmkoChRDVh4nwtRjGecNYmACdcxDU6Euv3SVoUhw&oe=640A1C74",
+  },
+  {
+    id: 3,
+    name: "Việt Quang",
+    image:
+      "https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/309388201_3308232702789043_645801797319481363_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=2ywyrl8SmtcAX95FD2y&_nc_ht=scontent.fsgn8-4.fna&oh=00_AfANs6MPE_NhUbk03tkufCfDv3cl7KxJRjPRPz8qexGzbg&oe=640A19DF",
+  },
+];
 users.forEach((user) => {
   const userHmtl = `
     <div class="block ${user.unRead ? "unRead" : ""}">
@@ -54,3 +98,35 @@ users.forEach((user) => {
     `;
   userRender.innerHTML += userHmtl;
 });
+friends.forEach((friend) => {
+  const friendHtml = `
+  <div class="block ">
+  <div class="userImage">
+    <img
+      src="${friend.image}"
+      alt="avater-user"
+      class="cover"
+    />
+  </div>
+  <div class="details">
+    <div class="listhead">
+      <h4>${friend.name}</h4>
+      <div class="btnAndremove">
+        <button class="add">
+        <i class="fa-sharp fa-solid fa-plus"></i>
+          Add
+        </span>
+        </button>
+        <button class="add">
+        <span>
+          Skip
+        </span>
+        </button>
+        </div>
+    </div>
+  </div>
+</div>`;
+  userAddFriend.innerHTML += friendHtml;
+});
+
+
